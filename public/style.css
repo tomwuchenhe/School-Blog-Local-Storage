@@ -68,3 +68,11 @@ img {
 #to-right{
     text-align: right;
 }
+
+@media (max-width: 768px) {
+    header {
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
