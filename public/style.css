@@ -1,0 +1,70 @@
+.nav-link:hover{
+    color: grey;
+}
+
+.anton-regular {
+    font-family: "Anton", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+#mcm {
+    margin-right: 15px;
+    width: 70px;
+    height: 35px;
+}
+
+p {
+    margin: 0;
+}
+
+.center {
+    text-align: center;
+}
+
+
+#share, #chat, #comp{
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+#share:hover {
+    transform: translateY(-15px);
+    color: blue;
+}
+
+#chat:hover {
+    transform: translateY(-15px);
+    color: rgb(255, 0, 255);
+}
+
+#comp:hover {
+    transform: translateY(-15px);
+    color: rgb(210, 164, 55);
+}
+
+#pushed {
+    gap: 10vh;
+    margin-bottom: 10vh;
+}
+
+#btn-text{
+    color:white;
+}
+
+.dialog-none {
+    display: none;
+}
+
+img {
+    border-radius: 10%;
+}
+
+
+
+#to-left {
+    text-align: left;
+}
+
+#to-right{
+    text-align: right;
+}

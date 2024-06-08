@@ -1,0 +1,46 @@
+<%- include("./partials/header.ejs") %>
+
+<div class = "container text-center">
+    <button type="button" class="btn btn-info mb-5 create-post mt-4" id = "btn-text">+ Create Post</button>
+    <div class="dialog dialog-none">
+        <div class="container d-flex flex-column col-6 mb-5">
+                <h2 class = "fw-normal text-muted mb-3 fw-bold">Create a Post</h2>
+                <form id="postForm" action = "/food/submit" method = "POST" class = "d-flex flex-column gap-3" enctype="multipart/form-data">
+                    <textarea id="postText" name="food" rows="4" cols="50" placeholder="Enter Some text regarding campus food or your own recipe"></textarea>
+                    <textarea id="postTextName" name="food-name" rows="1" cols="50" placeholder="Whats your name?"></textarea>
+                    <h2 class = "fw-normal text-muted mb-3 fw-bold">Upload Image For Profile</h2>
+                    <input type="file" id="image" name="image">
+                    <button type="submit" class="btn btn-success mb-3" id = "btn-text">OK</button>
+                </form>
+        </div>
+    </div>
+</div>
+
+<div class = "container">
+    <h2 class = "text-center display-1 mb-5 border-top">Posts Foooods Related</h2>
+    <% if (posts.length > 0) { %>
+            <% for (var i = 0; i <= posts.length - 1; i++) {%>
+                <% if (i % 2 === 0) {%>
+                    <div class = "container" id="to-right">
+                        <% if (posts[i].image) { %>
+                            <img src="<%= posts[i].image %>" alt="Post Image" width="30%" height="30%"/><br>
+                        <% } %>
+                        <h2 style = "display: inline-block;" class = "mt-4"><%= posts[i].username %></h2> (<%= posts[i].timestamp %>):
+                        <p class ="lead mb-5"><%= posts[i].comment %></p>
+                    </div>
+                <% } else { %>
+                    <div class = "container" id="to-left">
+                        <% if (posts[i].image) { %>
+                            <img src="<%= posts[i].image %>" alt="Post Image" width="30%" height="30%"/><br>
+                        <% } %>
+                        <h2 style = "display: inline-block;" class = "mt-4"><%= posts[i].username %></h2> (<%= posts[i].timestamp %>):
+                        <p class ="lead mb-5"><%= posts[i].comment %></p>
+                    </div>
+            <% } %>
+        <% } %>
+    <% } else { %>
+        <p class = "mt-3 text-center">No posts yet. Be the first to post!</p>
+    <% } %>
+</div>
+
+<%- include("./partials/footer.ejs") %>
