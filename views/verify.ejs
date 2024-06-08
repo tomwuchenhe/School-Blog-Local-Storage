@@ -1,0 +1,12 @@
+<%- include("./partials/header.ejs") %>
+<div class = "container text-center col-5">
+    <h1>Please enter your Passcode</h1>
+    <% if (locals.wrong) { %>
+        <h5 style = "color: red;" class = "mt-4"><%= wrong %></h5>
+    <% } %>
+    <form id="postForm" action = "/admin/verify" method = "POST" class = "d-flex flex-column gap-3 mt-5">
+        <textarea id="postTextName" name="password" rows="1" cols="50" placeholder="passcode"></textarea>
+        <button type="submit" class="btn btn-success mb-3" id = "btn-text">OK</button>
+    </form>
+</div>
+<%- include("./partials/footer.ejs") %>

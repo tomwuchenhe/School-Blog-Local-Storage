@@ -17,27 +17,49 @@
 </div>
 
 <div class = "container">
-    <h2 class = "text-center display-1 mb-5 border-top">Posts Campus Related</h2>
+    <h2 class = "text-center display-1 mb-5 border-top pt-4">Posts Campus Lifeeee related</h2>
     <% if (posts.length > 0) { %>
             <% for (var i = 0; i <= posts.length - 1; i++) {%>
                 <% if (i % 2 === 0) {%>
-                    <div class = "container" id="to-right">
+                    <% if (i < posts.length - 1) {%>
+                        <div class = "container d-flex mb-5 gap-3" style = "border-bottom:5px solid rgb(209, 209, 209);">
+                    <% } else { %>
+                        <div class = "container d-flex mb-5 gap-3">
+                    <% } %>
                         <% if (posts[i].image) { %>
-                            <img src="<%= posts[i].image %>" alt="Post Image" width="30%" height="30%"/><br>
+                        <img src="<%= posts[i].image %>" class = "pi" alt="Post Image" width="30%" height="30%"/><br>
                         <% } %>
-                        <h2 style = "display: inline-block;" class = "mt-4"><%= posts[i].username %></h2> (<%= posts[i].timestamp %>):
-                        <p class ="lead mb-5"><%= posts[i].comment %></p>
+                        <div class = "container">
+                            <h2 style = "display: inline-block;" class = "mt-4"><%= posts[i].username %></h2> (<%= posts[i].timestamp %>): 
+                            <% if (locals.authenticated) { %>
+                                <% if (authenticated === true) { %>
+                                    <button class = "btn btn-danger to-be-delete" style = "margin-bottom: 15px; margin-left: 5px;">- Delete</button>
+                                <% } %>
+                            <% } %>
+                            <p class ="lead mb-5"><%= posts[i].comment %></p>
+                        </div>
                     </div>
                 <% } else { %>
-                    <div class = "container" id="to-left">
-                        <% if (posts[i].image) { %>
-                            <img src="<%= posts[i].image %>" alt="Post Image" width="30%" height="30%"/><br>
+                    <% if (i < posts.length - 1) {%>
+                        <div class = "container d-flex mb-5 gap-3 flex-row-reverse border-bottom" style = "border-bottom:5px solid rgb(209, 209, 209);">
+                    <% } else { %>
+                        <div class = "container d-flex mb-5 gap-3 flex-row-reverse">
+                    <% } %>
+                        <% if (posts[i].image) { %> 
+                            <img src="<%= posts[i].image %>" class = "pi" alt="Post Image" width="30%" height="30%"/><br>
                         <% } %>
-                        <h2 style = "display: inline-block;" class="mt-4 "><%= posts[i].username %></h2> (<%= posts[i].timestamp %>):
-                        <p class ="lead mb-5"><%= posts[i].comment %></p>
+                        <div class = "container">
+                            <h2 style = "display: inline-block;" class = "mt-4"><%= posts[i].username %></h2> (<%= posts[i].timestamp %>): 
+                            <% if (locals.authenticated) { %>
+                                <% if (authenticated === true) { %>
+                                    <button class = "btn btn-danger to-be-delete" style = "margin-bottom: 15px; margin-left: 5px;">- Delete</button>
+                                <% } %>
+                            <% } %>
+                            <p class ="lead mb-5"><%= posts[i].comment %></p>
+                        </div>
                     </div>
-            <% } %>
-        <% } %>
+               <% } %>
+    <% } %>
     <% } else { %>
         <p class = "mt-3 text-center">No posts yet. Be the first to post!</p>
     <% } %>

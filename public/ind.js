@@ -19,7 +19,10 @@ function checkActive() {
 
 checkActive()
 
-document.querySelector(".create-post").addEventListener("click", () => {
-    document.querySelector(".dialog").classList.toggle("dialog-none")
+if (document.URL.includes("/food") || document.URL.includes("/campus-life"))
+    document.querySelector(".create-post").addEventListener("click", () => {
+        document.querySelector(".dialog").classList.toggle("dialog-none")
 })
+
+const btns = document.querySelectorAll(".to-be-delete")
 

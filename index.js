@@ -4,6 +4,7 @@ import path from "path"
 
 const app = express()
 const port = 3000
+var verified = false
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -32,11 +33,15 @@ app.get("/", (req, res) => {
 })
 
 app.get("/food", (req, res) => {
-    res.render('food.ejs', { posts: posts });
+    res.render('food.ejs', { posts: posts,
+        authenticated: verified,
+     });
 })
 
 app.get("/campus-life", (req, res) => {
-    res.render("campus.ejs", {posts: posts_camp})
+    res.render("campus.ejs", {posts: posts_camp,
+        authenticated: verified
+    })
 })
 
 
@@ -58,6 +63,21 @@ app.post("/campus-life/submit", upload.single('image'),(req, res) => {
         posts_camp.push({ username: name, comment: comment, image: imagePath, timestamp: new Date().toLocaleString() });
     }
     res.redirect("/campus-life")
+})
+
+app.get("/admin", (req, res) => {
+    res.render("verify.ejs")
+})
+
+
+app.post("/admin/verify", (req, res) => {
+    //default password
+    if (req.body["password"] != "123456") {
+        res.render("verify.ejs", {wrong: "Password is Wrong, Please try again"})
+    } else {
+        verified = true
+        res.redirect("/")
+    }
 })
 
 app.listen(port, () => {
