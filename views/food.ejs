@@ -16,20 +16,21 @@
     </div>
 </div>
 
+    
 <div class = "container">
     <h2 class = "text-center display-1 mb-5 border-top pt-4">Posts Fooods related</h2>
     <% if (posts.length > 0) { %>
             <% for (var i = 0; i <= posts.length - 1; i++) {%>
                 <% if (i % 2 === 0) {%>
                     <% if (i < posts.length - 1) {%>
-                        <div class = "container specific d-flex mb-5 gap-3" style = "border-bottom:5px solid rgb(209, 209, 209);">
+                        <div class = "container d-flex mb-5 gap-3" style = "border-bottom:5px solid rgb(209, 209, 209);">
                     <% } else { %>
-                        <div class = "container specific d-flex mb-5 gap-3">
+                        <div class = "container d-flex mb-5 gap-3">
                     <% } %>
                         <% if (posts[i].image) { %>
                         <img src="<%= posts[i].image %>" class = "pi" alt="Post Image" width="30%" height="30%"/><br>
                         <% } %>
-                            <div class = "container">
+                            <div class = "container post-details">
                                 <h2 style = "display: inline-block;" class = "mt-4"><%= posts[i].username %></h2> (<%= posts[i].timestamp %>): 
                                 <% if (locals.authenticated) { %>
                                     <% if (authenticated === true) { %>
@@ -41,14 +42,14 @@
                     </div>
                 <% } else { %>
                     <% if (i < posts.length - 1) {%>
-                        <div class = "container specific d-flex mb-5 gap-3 flex-row-reverse border-bottom" style = "border-bottom:5px solid rgb(209, 209, 209);">
+                        <div class = "container d-flex mb-5 gap-3 flex-row-reverse" style = "border-bottom:5px solid rgb(209, 209, 209);">
                     <% } else { %>
-                        <div class = "container specific d-flex mb-5 gap-3 flex-row-reverse">
+                        <div class = "container d-flex mb-5 gap-3 flex-row-reverse">
                     <% } %>
                         <% if (posts[i].image) { %>
                             <img src="<%= posts[i].image %>" class = "pi" alt="Post Image" width="30%" height="30%"/><br>
                         <% } %>
-                            <div class = "container">
+                            <div class = "container post-details">
                                 <h2 style = "display: inline-block;" class = "mt-4"><%= posts[i].username %></h2> (<%= posts[i].timestamp %>): 
                                 <% if (locals.authenticated) { %>
                                     <% if (authenticated === true) { %>

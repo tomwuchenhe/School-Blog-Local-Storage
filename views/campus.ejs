@@ -29,7 +29,7 @@
                         <% if (posts[i].image) { %>
                         <img src="<%= posts[i].image %>" class = "pi" alt="Post Image" width="30%" height="30%"/><br>
                         <% } %>
-                        <div class = "container">
+                        <div class = "container post-details">
                             <h2 style = "display: inline-block;" class = "mt-4"><%= posts[i].username %></h2> (<%= posts[i].timestamp %>): 
                             <% if (locals.authenticated) { %>
                                 <% if (authenticated === true) { %>
@@ -48,7 +48,7 @@
                         <% if (posts[i].image) { %> 
                             <img src="<%= posts[i].image %>" class = "pi" alt="Post Image" width="30%" height="30%"/><br>
                         <% } %>
-                        <div class = "container">
+                        <div class = "container post-details">
                             <h2 style = "display: inline-block;" class = "mt-4"><%= posts[i].username %></h2> (<%= posts[i].timestamp %>): 
                             <% if (locals.authenticated) { %>
                                 <% if (authenticated === true) { %>

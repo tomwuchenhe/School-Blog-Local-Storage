@@ -85,3 +85,14 @@ p {
     border: none;
     color: white;
 }
+
+
+p.lead {
+    word-wrap:break-word;/* Ensure long text breaks within the container */
+    white-space: normal; /* Ensure text wraps normally */
+}
+
+.post-details {
+    flex: 1;
+    min-width: 0; /* Prevent flex items from growing beyond container */
+}
