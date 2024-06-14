@@ -66,6 +66,7 @@ app.post("/food/submit", upload.single('image'),(req, res) => {
     const comment = req.body["food"]
     const name = req.body["food-name"]
     const imagePath = uploadPath + `/user_uploads/${req.file.filename}`
+    console.log(imagePath)
     if (name && comment) {
         posts.push({ username: name, comment: comment, image: imagePath, timestamp: new Date().toLocaleString() });
     }
@@ -76,6 +77,7 @@ app.post("/campus-life/submit", upload.single('image'),(req, res) => {
     const comment = req.body["food"]
     const name = req.body["food-name"]
     const imagePath = uploadPath + `/user_uploads/${req.file.filename}`
+    console.log(imagePath)
     if (name && comment) {
         posts_camp.push({ username: name, comment: comment, image: imagePath, timestamp: new Date().toLocaleString() });
     }
