@@ -6,18 +6,34 @@ const app = express()
 const port = 3000
 var verified = false
 
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        if (req.originalUrl.includes("food")){
-            cb(console.log("success storing"), 'public/user_uploads/');
-        } else if (req.originalUrl.includes("campus-life")) {
-            cb(console.log("success storing"), 'public/user_uploads_campus');
-        }
-    },
-    filename: (req, file, cb) => {
-        cb(console.log("success renaming"), Date.now() + path.extname(file.originalname)); 
-    }
+const uploadPath = '/var/data/uploads';
+
+// Ensure directories exist
+const dirs = [
+  path.join(uploadPath, 'user_uploads'),
+  path.join(uploadPath, 'user_uploads_campus')
+];
+dirs.forEach(dir => {
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir, { recursive: true });
+  }
 });
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    if (req.originalUrl.includes("food")) {
+      cb(null, path.join(uploadPath, 'user_uploads'));
+    } else if (req.originalUrl.includes("campus-life")) {
+      cb(null, path.join(uploadPath, 'user_uploads_campus'));
+    } else {
+      cb(null, uploadPath); // default upload path if no match
+    }
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + path.extname(file.originalname));
+  }
+});
+
 const upload = multer({ storage: storage });
 
 let posts = []
