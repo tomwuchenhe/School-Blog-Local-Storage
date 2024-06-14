@@ -2,6 +2,7 @@ import express from "express"
 import multer from "multer";
 import path from "path"
 import fs from "fs"
+import { timeStamp } from "console";
 
 const app = express()
 const port = 3000
@@ -67,8 +68,9 @@ app.post("/food/submit", upload.single('image'), (req, res) => {
     try {
       const comment = req.body["food"];
       const imagePath = req.file ? `/uploads/user_uploads/${req.file.filename}` : null;
-      posts.push({ comment, imagePath });
-      console.log('Uploaded image path:', imagePath); // Log the image path
+      posts.push({ username: req.body["food-name"], comment: comment, image: imagePath, timestamp: new Date().toLocaleString()});
+      console.log('Uploaded image path food:', imagePath); // Log the image path
+      console.log(posts)
       res.redirect('/food');
     } catch (err) {
       console.error('Error uploading file:', err);
@@ -80,8 +82,9 @@ app.post("/food/submit", upload.single('image'), (req, res) => {
     try {
       const comment = req.body["campus-life"];
       const imagePath = req.file ? `/uploads/user_uploads_campus/${req.file.filename}` : null;
-      posts_camp.push({ comment, imagePath });
-      console.log('Uploaded image path:', imagePath); // Log the image path
+      posts_camp.push({ username: req.body["food-name"], comment: comment, image: imagePath, timestamp: new Date().toLocaleString()});
+      console.log('Uploaded image path campus:', imagePath); // Log the image path
+      console.log(posts_camp)
       res.redirect('/campus-life');
     } catch (err) {
       console.error('Error uploading file:', err);
