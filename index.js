@@ -80,7 +80,7 @@ app.post("/food/submit", upload.single('image'), (req, res) => {
   
   app.post("/campus-life/submit", upload.single('image'), (req, res) => {
     try {
-      const comment = req.body["campus-life"];
+      const comment = req.body["food"];
       const imagePath = req.file ? `/uploads/user_uploads_campus/${req.file.filename}` : null;
       posts_camp.push({ username: req.body["food-name"], comment: comment, image: imagePath, timestamp: new Date().toLocaleString()});
       console.log('Uploaded image path campus:', imagePath); // Log the image path
