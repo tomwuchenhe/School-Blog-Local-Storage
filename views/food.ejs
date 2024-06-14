@@ -31,7 +31,10 @@
                         <img src="<%= posts[i].image %>" class = "pi" alt="Post Image" width="30%" height="30%"/><br>
                         <% } %>
                             <div class = "container post-details">
-                                <h2 style = "display: inline-block;" class = "mt-4"><%= posts[i].username %></h2> (<%= posts[i].timestamp %>): 
+                                <h2 style = "display: inline-block;"><%= posts[i].username %></h2>
+                                <br>
+                                (<%= posts[i].timestamp %>):
+                                <br> 
                                 <% if (locals.authenticated) { %>
                                     <% if (authenticated === true) { %>
                                         <button class = "btn btn-danger to-be-delete" style = "margin-bottom: 15px; margin-left: 5px;">- Delete</button>
@@ -50,7 +53,10 @@
                             <img src="<%= posts[i].image %>" class = "pi" alt="Post Image" width="30%" height="30%"/><br>
                         <% } %>
                             <div class = "container post-details">
-                                <h2 style = "display: inline-block;" class = "mt-4"><%= posts[i].username %></h2> (<%= posts[i].timestamp %>): 
+                                <h2 style = "display: inline-block;"><%= posts[i].username %></h2>
+                                <br>
+                                (<%= posts[i].timestamp %>): 
+                                <br>
                                 <% if (locals.authenticated) { %>
                                     <% if (authenticated === true) { %>
                                         <button class = "btn btn-danger to-be-delete" style = "margin-bottom: 15px; margin-left: 5px;">- Delete</button>
