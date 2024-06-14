@@ -43,6 +43,7 @@ let posts_camp = []
 //middlewares here
 
 app.use(express.static("public"))
+app.use('/uploads', express.static(uploadPath));
 app.use(express.urlencoded({extended: true}))
 
 app.get("/", (req, res) => {
@@ -62,27 +63,31 @@ app.get("/campus-life", (req, res) => {
 })
 
 
-app.post("/food/submit", upload.single('image'),(req, res) => {
-    const comment = req.body["food"]
-    const name = req.body["food-name"]
-    const imagePath = uploadPath + `/user_uploads/${req.file.filename}`
-    console.log(imagePath)
-    if (name && comment) {
-        posts.push({ username: name, comment: comment, image: imagePath, timestamp: new Date().toLocaleString() });
+app.post("/food/submit", upload.single('image'), (req, res) => {
+    try {
+      const comment = req.body["food"];
+      const imagePath = req.file ? `/uploads/user_uploads/${req.file.filename}` : null;
+      posts.push({ comment, imagePath });
+      console.log('Uploaded image path:', imagePath); // Log the image path
+      res.redirect('/food');
+    } catch (err) {
+      console.error('Error uploading file:', err);
+      res.status(500).send('Internal Server Error');
     }
-    res.redirect("/food")
-})
-
-app.post("/campus-life/submit", upload.single('image'),(req, res) => {
-    const comment = req.body["food"]
-    const name = req.body["food-name"]
-    const imagePath = uploadPath + `/user_uploads/${req.file.filename}`
-    console.log(imagePath)
-    if (name && comment) {
-        posts_camp.push({ username: name, comment: comment, image: imagePath, timestamp: new Date().toLocaleString() });
+  });
+  
+  app.post("/campus-life/submit", upload.single('image'), (req, res) => {
+    try {
+      const comment = req.body["campus-life"];
+      const imagePath = req.file ? `/uploads/user_uploads_campus/${req.file.filename}` : null;
+      posts_camp.push({ comment, imagePath });
+      console.log('Uploaded image path:', imagePath); // Log the image path
+      res.redirect('/campus-life');
+    } catch (err) {
+      console.error('Error uploading file:', err);
+      res.status(500).send('Internal Server Error');
     }
-    res.redirect("/campus-life")
-})
+  });
 
 app.get("/admin", (req, res) => {
     res.render("verify.ejs")
