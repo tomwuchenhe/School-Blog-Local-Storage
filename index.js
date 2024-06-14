@@ -1,6 +1,7 @@
 import express from "express"
 import multer from "multer";
 import path from "path"
+import fs from "fs"
 
 const app = express()
 const port = 3000
